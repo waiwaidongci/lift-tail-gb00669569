@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700&family=Baskervville&display=swap');
+:root {
+  --text-font: 'Barlow'; --title-font: 'Baskervville';
+  --paper: oklch(.975 .012 55); --surface: oklch(.994 .006 55);
+  --ink: oklch(.235 .035 55); --quiet: oklch(.435 .038 55);
+  --stripe: oklch(.961 .014 55); --rule: oklch(.858 .024 55);
+  --accent: oklch(.445 0.115 55); --button-ink: oklch(.98 .007 55);
+  --focus: oklch(.64 0.115 55);
+  --side: oklch(.258 .041 55);
+  --side-ink: oklch(.975 .011 55);
+  --highlight: oklch(.36 .047 55);
+  --highlight-edge: oklch(.762 .096 55);
+  --side-width: 230px; --side-pad: 1.25rem;
+  --login-ratio: 1.35fr; --report-stripe: 3px;
+}
