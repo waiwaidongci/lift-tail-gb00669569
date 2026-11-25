@@ -67,4 +67,8 @@ figcaption {font-weight:700;margin-bottom:.55rem}
 .login form {background:var(--surface);padding:clamp(1.2rem,3.7vw,3.35rem);border-block-start:var(--report-stripe) solid var(--accent)}
 @media (max-width:1000px) {.workspace {grid-template-columns:minmax(180px,24%) minmax(0,1fr)} .workspace aside {padding-inline:1rem}}
 @media (max-width:767px) {.workspace {display:block}.workspace aside {position:static;height:auto;padding:1.05rem;gap:.72rem}.workspace aside nav {grid-template-columns:repeat(2,minmax(0,1fr));gap:.14rem}.workspace aside footer {display:flex;align-items:center;justify-content:space-between}.workspace main {padding:1.3rem 1rem 2rem}.login {grid-template-columns:1fr;align-content:center;gap:1rem}.login-context {padding:1rem 0}.page-head {align-items:flex-start}.table-wrap {font-size:.89rem}}
+.correction-form {max-width:62rem;margin:1rem 0}
+.correction-form .button-row {display:flex;flex-wrap:wrap;gap:.7rem;align-items:center}
+.correction-form .button-row button {justify-self:auto}
+.reservation-panel .table-wrap {margin:.8rem 0 1.1rem}
 @media (prefers-reduced-motion:reduce) {* {animation:none!important;transition:none!important}}

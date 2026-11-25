@@ -7,6 +7,7 @@ from src.constants.enums import Role
 from src.controllers.query import delivery_status, jobs, recent_activity, require_row, revisions
 from src.models.tables import datasets, runs
 from src.schemas.requests import Delivery, Import, Login, Review, Run
+from src.routes.reservations import router as reservation_router
 from src.services.data import PROFILE, csv_records, save_revision
 from src.services.domain import sample_rows
 from src.services.workflow import add_run, cancel_schedule, review_run, schedule_report
@@ -14,6 +15,7 @@ from src.utils.exports import write_csv
 from src.utils.security import allowed, authenticate, signed_in
 
 router = APIRouter()
+router.include_router(reservation_router)
 analyst = allowed(Role.analyst.value)
 reviewer = allowed(Role.reviewer.value)
 

@@ -24,3 +24,7 @@ deliveries = Table('report_deliveries', metadata, Column('id', Integer, primary_
 audit = Table('operation_audit', metadata, Column('id', Integer, primary_key=True),
               Column('at', Double, nullable=False), Column('actor', String(40), nullable=False),
               Column('action', String(30), nullable=False), Column('subject', Integer, nullable=False))
+reservation_ledgers = Table('reservation_ledgers', metadata,
+                            Column('scope', String(120), primary_key=True),
+                            Column('state', JSON, nullable=False),
+                            Column('updated', Double, nullable=False))

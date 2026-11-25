@@ -207,3 +207,26 @@ def compute(rows: list[dict], options: dict) -> dict:
             ],
         },
     }
+
+
+# The correction/rolling-window workflow lives in its own dependency-free
+# module.  Re-exporting the common entry points here keeps the business rules
+# discoverable from the established domain module.
+from src.services.rolling_reservations import (  # noqa: E402
+    CorrectionConflict,
+    RollingReservationService,
+    affected_window_starts,
+    apply_corrections,
+    build_rolling_reservations,
+)
+
+__all__ = [
+    "PERIODS",
+    "compute",
+    "sample_rows",
+    "CorrectionConflict",
+    "RollingReservationService",
+    "affected_window_starts",
+    "apply_corrections",
+    "build_rolling_reservations",
+]

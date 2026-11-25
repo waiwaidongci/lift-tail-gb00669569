@@ -117,3 +117,39 @@ def publish_due():
                 delivery_id = connection.execute(insert(deliveries).values(schedule_id=item['id'], run_id=item['run_id'],
                                                recipient=item['recipient'], scheduled=previous, delivered=now)).inserted_primary_key[0]
                 add_event(connection, 'worker', 'delivered', delivery_id, now)
+
+
+# Correction/rolling-reservation workflow entry points are implemented in
+# focused modules; re-export them here for the established workflow import path.
+from src.services.rolling_reservations import (  # noqa: E402
+    CorrectionConflict,
+    RollingReservationService,
+    affected_window_starts,
+    apply_corrections,
+    build_rolling_reservations,
+    merge_corrections,
+)
+from src.services.reservation_store import (  # noqa: E402
+    current_view as get_rolling_reservation_view,
+    process_all_available as run_pending_reservation_jobs,
+    submit_batch as submit_reservation_batch,
+)
+
+__all__ = [
+    "add_run",
+    "claim_run",
+    "finish_run",
+    "review_run",
+    "schedule_report",
+    "cancel_schedule",
+    "publish_due",
+    "CorrectionConflict",
+    "RollingReservationService",
+    "affected_window_starts",
+    "apply_corrections",
+    "build_rolling_reservations",
+    "merge_corrections",
+    "get_rolling_reservation_view",
+    "run_pending_reservation_jobs",
+    "submit_reservation_batch",
+]

@@ -8,6 +8,7 @@ from src.config.settings import ARTIFACTS
 from src.models.database import cache
 from src.services.domain import compute
 from src.services.workflow import claim_run, finish_run, publish_due
+from src.services.reservation_store import process_next_reservation_job, recover_all_reservation_jobs
 from src.utils.exports import write_csv
 
 
@@ -32,11 +33,16 @@ def calculate(job):
 
 
 def work():
+    try:
+        recover_all_reservation_jobs(timeout=None)
+    except Exception:
+        logging.exception('Reservation job recovery failed; will retry from the queue.')
     while True:
         try:
             job = claim_run()
             if job:
                 calculate(job)
+            process_next_reservation_job()
             publish_due()
             cache.set('worker:heartbeat', str(time.time()), ex=25)
         except Exception:

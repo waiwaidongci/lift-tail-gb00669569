@@ -40,6 +40,12 @@
 | `duration_minutes` | 任务工时（分钟） | float |
 | `wait_minutes` | 排队时间（分钟） | float |
 
+## 更正单与滚动预留
+
+「搬运签收台账」和「预留工时复核」页内提供按日滚动七天的各时段预留工时。更正记录按 `task_id`/`revision`（也兼容 `rev`、`version`、`修订号`）识别；同一趟只采用最高修订号，同趟同号但业务内容冲突时整批拒收。跨日更正会计算原日期与新日期各自落入的七个窗口，并只把这些窗口标记为重算；未受影响窗口复用上一完整快照。
+
+后端入口为 `POST /correction-batches`、`GET /reservations/rolling` 和 `POST /reservations/recompute`；核心无框架依赖实现在 `backend/src/services/rolling_reservations.py`。快照带版本和修订栅栏：所有受影响窗口算齐后才切换当前版本，计算中或计算失败时接口与页面仍返回/展示上一完整版本。worker 重启时会恢复中断任务；若旧任务晚于更新更正完成，栅栏不匹配会丢弃旧结果，避免工时回拨。
+
 ## 启动
 
 ```sh
